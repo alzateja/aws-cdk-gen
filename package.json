@@ -1,0 +1,42 @@
+{
+  "name": "aws-cdk-gen",
+  "version": "0.1.0",
+  "description": "Opinionated tool to generate Typescript AWS CDK constructs.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build-ts && npm run copy-templates",
+    "build-ts": "tsc",
+    "clean": "rm -rf dist",
+    "copy-templates": "cp -R src/templates dist/",
+    "format": "prettier --write 'src/**/*.js'",
+    "lint": "eslint --ext .js src",
+    "lint-fix": "eslint  --ext .js --fix src",
+    "start": "plop",
+    "watch-ts": "tsc -w"
+  },
+  "bin": {
+    "aws-cdk-gen": "dist/index.js"
+  },
+  "preferGlobal": true,
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "fs-extra": "9.0.1",
+    "plop": "^2.7.4"
+  },
+  "author": "Jayson Alzate",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.3"
+  }
+}

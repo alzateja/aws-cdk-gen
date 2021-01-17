@@ -1,0 +1,15 @@
+import { Construct } from '@aws-cdk/core';
+import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
+import { {{properCase lambda}}JsLambda } from '../lambda/{{dashCase lambda}}-js-lambda';
+
+export class {{properCase lambda}}JsLambdaIntegration extends Construct {
+public integration: LambdaProxyIntegration
+constructor(scope: Construct, id: string,) {
+super(scope, id);
+const lambda = new {{properCase lambda}}JsLambda(this, '{{properCase lambda}}JsFunction')
+
+this.integration = new LambdaProxyIntegration({
+handler: lambda.function
+});
+}
+}

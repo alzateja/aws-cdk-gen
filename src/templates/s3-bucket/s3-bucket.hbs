@@ -1,0 +1,12 @@
+import { Construct } from '@aws-cdk/core';
+import { Bucket } from '@aws-cdk/aws-s3';
+
+export interface {{properCase s3}}Props {
+bucketName: string;
+appEnv?: string;
+}
+
+export declare class {{properCase s3}} extends Construct {
+readonly bucket: Bucket;
+constructor(scope: Construct, id: string, props: {{properCase s3}}Props );
+}

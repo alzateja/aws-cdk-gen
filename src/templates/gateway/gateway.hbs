@@ -1,0 +1,23 @@
+import { Construct } from '@aws-cdk/core';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
+// -- Import Integrations --
+
+
+export class {{properCase gateway}}APIGateway extends Construct {
+constructor(scope: Construct, id: string) {
+super(scope, id);
+
+// -- Define Integrations --
+
+
+// -- Define Gateway --
+
+const lambdaGateway = new HttpApi(this, '{{properCase gateway}}HttpAPI', {
+apiName: '{{dashCase gateway}}-api',
+});
+
+// -- Define Routes --
+
+
+}
+}
