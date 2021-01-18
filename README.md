@@ -7,9 +7,13 @@ Why?
 ----
 The hope is that you will be able to use this tool to remove boilerplate code and learn how to connect CDK constructs in a project with minimum changes.
 
-Here is an example of generating a NodeJS Lambda.
+Here is an example of generating a Go Lambda.
 
-![alt text](./assets/example-run.gif "Generation in action")
+![alt text](https://github.com/alzateja/aws-cdk-gen/blob/main/assets/example-run.gif "Generation in action")
+
+Here is an example of the outputted files.
+
+![alt text](https://github.com/alzateja/aws-cdk-gen/blob/main/assets/generator-output.png "Generator output")
 
 
 Caveats
@@ -45,7 +49,7 @@ Base Generators Available
 -----
 There a few constructs available upon starting the tool in a new CDK project. Below is a screenshot of the initial options available.
 
-![alt text](./assets/initial-options.png "Initial available options")
+![alt text](https://github.com/alzateja/aws-cdk-gen/blob/main/assets/initial-options.png "Initial available options")
 
 Here are a description of the various options.
 
@@ -68,7 +72,7 @@ There are a few generators that are dependent on other constructs to have been g
 
 Below is a screenshot of the hidden options available.
 
-![alt text](./assets/all-options.png "all available options")
+![alt text](https://github.com/alzateja/aws-cdk-gen/blob/main/assets/all-options.png "all available options")
 
 Here are a description of the various options.
 
