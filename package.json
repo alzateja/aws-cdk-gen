@@ -1,6 +1,6 @@
 {
   "name": "aws-cdk-gen",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Opinionated tool to generate Typescript AWS CDK constructs.",
   "main": "dist/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "watch-ts": "tsc -w"
   },
   "bin": {
-    "aws-cdk-gen": "index.js"
+    "aws-cdk-gen": "dist/index.js"
   },
   "preferGlobal": true,
   "files": [
