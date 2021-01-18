@@ -9,8 +9,6 @@ const actions = (plop) => {
     const dest = plop.renderString(config.dest, answers);
     const dirname = path.dirname(dest);
 
-    console.log(dest);
-    console.log(dirname);
     fs.mkdirSync(dirname, { recursive: true });
     fs.copyFileSync(src, dest);
   });
@@ -18,12 +16,9 @@ const actions = (plop) => {
   plop.setActionType("copyDir", (answers, config, plop) => {
     const src = plop.renderString(config.src, answers);
     const dest = plop.renderString(config.dest, answers);
-    const dirname = path.dirname(dest);
-    console.log(dirname);
-    console.log(dest);
 
-    fs.mkdirSync(dirname, { recursive: true });
-    fs.copySync(src, dirname);
+    fs.mkdirSync(dest, { recursive: true });
+    fs.copySync(src, dest);
   });
 };
 

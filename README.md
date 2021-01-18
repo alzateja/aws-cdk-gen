@@ -35,7 +35,7 @@ Create a script in your package.json to generate CDK constructs. For example
 
 ```json
 "scripts": {
-    "gen-cdk": "aws-cdk-gen"
+    "aws-cdk-gen": "aws-cdk-gen"
 }
 ```
 
