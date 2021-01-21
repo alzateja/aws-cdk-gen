@@ -5,7 +5,7 @@ This project allows you to generate Typescript constructs for a variety of commo
 
 Why?
 ----
-The hope is that you will be able to use this tool to remove boilerplate code and learn how to connect CDK constructs in a project with minimum changes.
+The hope is that you will be able to use this tool to remove boilerplate code. Additionally, developers can learn how to connect CDK constructs in a project with minimum changes.
 
 Here is an example of generating a Go Lambda.
 
@@ -15,6 +15,7 @@ Here is an example of the outputted files.
 
 ![alt text](https://github.com/alzateja/aws-cdk-gen/blob/main/assets/generator-output.png "Generator output")
 
+As you can see it generates the Lambda construct, a Lambda integration, and a Go file as well, giving a developer all they need to get started.
 
 Caveats
 ----
