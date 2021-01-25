@@ -1,21 +1,24 @@
-lambdaGateway.addRoutes({
-path: '/{{lowerCase route}}/{id}',
-methods: [ HttpMethod.PUT ],
-integration: {{camelCase lambda}}DynamoIntegrations.putIntegration
-});
 
-lambdaGateway.addRoutes({
-path: '/{{lowerCase route}}',
-methods: [ HttpMethod.POST ],
-integration: {{camelCase lambda}}DynamoIntegrations.postIntegration
-});
-lambdaGateway.addRoutes({
-path: '/{{lowerCase route}}/{id}',
-methods: [ HttpMethod.DELETE ],
-integration: {{camelCase lambda}}DynamoIntegrations.delIntegration
-});
-lambdaGateway.addRoutes({
-path: '/{{lowerCase route}}',
-methods: [ HttpMethod.GET ],
-integration: {{camelCase lambda}}DynamoIntegrations.getIntegration
-});
+        lambdaGateway.addRoutes({
+            path: '/{{lowerCase route}}/{id}',
+            methods: [ HttpMethod.PUT ],
+            integration: {{camelCase lambda}}DynamoIntegrations.put,
+        });
+
+        lambdaGateway.addRoutes({
+            path: '/{{lowerCase route}}',
+            methods: [ HttpMethod.POST ],
+            integration: {{camelCase lambda}}DynamoIntegrations.post,
+        });
+
+        lambdaGateway.addRoutes({
+            path: '/{{lowerCase route}}/{id}',
+            methods: [ HttpMethod.DELETE ],
+            integration: {{camelCase lambda}}DynamoIntegrations.del,
+        });
+
+        lambdaGateway.addRoutes({
+            path: '/{{lowerCase route}}',
+            methods: [ HttpMethod.GET ],
+            integration: {{camelCase lambda}}DynamoIntegrations.get,
+        });

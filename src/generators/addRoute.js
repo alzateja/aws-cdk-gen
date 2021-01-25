@@ -1,4 +1,5 @@
-import { templatePath, gatewayCDKPath } from "../constants";
+import { addRouteTemplatePath, gatewayCDKPath } from "../constants/path";
+import { validateUrlPathInput } from "../utils/validation";
 
 const addRouteGenerator = (plop, gatewayChoices, integrationChoices) => {
   plop.setGenerator("Add Lambda Route", {
@@ -8,7 +9,7 @@ const addRouteGenerator = (plop, gatewayChoices, integrationChoices) => {
         type: "list",
         choices: gatewayChoices,
         name: "api-gateway",
-        message: "What is the Api gateway you want to add a route to?",
+        message: "What is the Api Gateway you want to add a route to?",
       },
       {
         type: "list",
@@ -19,8 +20,9 @@ const addRouteGenerator = (plop, gatewayChoices, integrationChoices) => {
       {
         type: "input",
         name: "route",
-        message: "What is the route you want to define it to?",
+        message: "What is the route you want to define for this lambda?",
         default: "/",
+        validate: validateUrlPathInput,
       },
     ],
     actions: [
@@ -30,21 +32,21 @@ const addRouteGenerator = (plop, gatewayChoices, integrationChoices) => {
         type: "append",
         path: gatewayCDKPath + "{{dashCase api-gateway}}-gateway.ts",
         pattern: /(-- Import Integrations --)/gi,
-        templateFile: templatePath + "add-route/import.hbs",
+        templateFile: addRouteTemplatePath + "import.hbs",
       },
       "We will now attempt to initialize the integration within the gateway.",
       {
         type: "append",
         path: gatewayCDKPath + "{{dashCase api-gateway}}-gateway.ts",
         pattern: /(-- Define Integrations --)/gi,
-        templateFile: templatePath + "add-route/integration.hbs",
+        templateFile: addRouteTemplatePath + "integration.hbs",
       },
       "We will now add a route to the gateway and pass in the integration.",
       {
         type: "append",
         path: gatewayCDKPath + "{{dashCase api-gateway}}-gateway.ts",
         pattern: /(-- Define Routes --)/gi,
-        templateFile: templatePath + "add-route/route.hbs",
+        templateFile: addRouteTemplatePath + "route.hbs",
       },
       "Successfully created a route to our Lambda!",
     ],

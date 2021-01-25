@@ -4,18 +4,18 @@ import { NodejsFunction }from '@aws-cdk/aws-lambda-nodejs';
 import { Runtime, Function } from '@aws-cdk/aws-lambda';
 
 export interface {{properCase lambda}}JsLambdaProps {
-environment?: { [key: string]: string }
+    environment?: { [key: string]: string };
 }
 
 export class {{properCase lambda}}JsLambda extends Construct {
-public function: Function
-constructor(scope: Construct, id: string, props?: {{properCase lambda}}JsLambdaProps) {
-super(scope, id);
+    public function: Function;
+    constructor(scope: Construct, id: string, props?: {{properCase lambda}}JsLambdaProps) {
+        super(scope, id);
 
-this.function = new NodejsFunction(this, '{{properCase lambda}}JsFunction', {
-runtime: Runtime.NODEJS_12_X,
-entry: path.join(__dirname, '..', '..', 'lambda', 'js', '{{camelCase lambda}}', 'handler.js'),
-handler: 'handler',
-})
-}
+        this.function = new NodejsFunction(this, '{{properCase lambda}}JsFunction', {
+            runtime: Runtime.NODEJS_12_X,
+            entry: path.join(__dirname, '..', '..', 'lambda', 'js', '{{camelCase lambda}}', 'handler.js'),
+            handler: 'handler',
+        });
+    }
 }

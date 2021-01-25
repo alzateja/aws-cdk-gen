@@ -13,7 +13,7 @@ const actions = (plop) => {
     fs.copyFileSync(src, dest);
   });
 
-  plop.setActionType("copyDir", (answers, config, plop) => {
+  plop.setActionType("copy directory", (answers, config, plop) => {
     const src = plop.renderString(config.src, answers);
     const dest = plop.renderString(config.dest, answers);
 
