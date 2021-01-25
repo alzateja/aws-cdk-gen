@@ -4,27 +4,28 @@ import { Asset } from '@aws-cdk/aws-s3-assets';
 import { Runtime, Function, S3Code } from '@aws-cdk/aws-lambda';
 
 export interface {{properCase lambda}}GoLambdaProps {
-environment?: { [key: string]: string }
+    environment?: { [key: string]: string };
 }
 
 export class {{properCase lambda}}GoLambda extends Construct {
-public function: Function
-constructor(scope: Construct, id: string, props?: {{properCase lambda}}GoLambdaProps) {
-super(scope, id);
-const goCodeAsset = new Asset(
-this,
-"{{properCase lambda}}GoLambdaFnZip",
-{
-path: path.join(__dirname, '..', '..', 'lambda', 'go', '{{camelCase lambda}}', 'function.zip'),
-}
-)
+    public function: Function;
+    constructor(scope: Construct, id: string, props?: {{properCase lambda}}GoLambdaProps) {
+        super(scope, id);
 
-this.function = new Function(this, '{{properCase lambda}}GoFunction', {
-code: new S3Code(goCodeAsset.bucket,goCodeAsset.s3ObjectKey),
-timeout: Duration.seconds(300),
-runtime: Runtime.GO_1_X,
-handler: "main",
-environment: props?.environment || {}
-})
-}
+        const goCodeAsset = new Asset(
+            this,
+            "{{properCase lambda}}GoLambdaFnZip",
+            {
+                path: path.join(__dirname, '..', '..', 'lambda', 'go', '{{camelCase lambda}}', 'function.zip'),
+            },
+        );
+
+        this.function = new Function(this, '{{properCase lambda}}GoFunction', {
+            code: new S3Code(goCodeAsset.bucket,goCodeAsset.s3ObjectKey),
+            timeout: Duration.seconds(300),
+            runtime: Runtime.GO_1_X,
+            handler: "main",
+            environment: props?.environment || {},
+        });
+    }
 }

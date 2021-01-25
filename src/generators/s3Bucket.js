@@ -1,4 +1,5 @@
-import { templatePath, s3CDKPath } from "../constants";
+import { s3BucketTemplatePath, s3CDKPath } from "../constants/path";
+import { validateLettersAndSpaces } from "../utils/validation";
 
 const s3BucketGenerator = (plop) => {
   plop.setGenerator("Create an S3 Bucket", {
@@ -7,8 +8,8 @@ const s3BucketGenerator = (plop) => {
       {
         type: "input",
         name: "s3",
-        message:
-          'What is the name of your S3 bucket? You can use spaces like "my test" when naming your bucket.',
+        message: "What is the name of your S3 bucket?",
+        validate: validateLettersAndSpaces,
       },
     ],
     actions: [
@@ -16,7 +17,7 @@ const s3BucketGenerator = (plop) => {
       {
         type: "add",
         path: s3CDKPath + "{{dashCase s3}}-bucket.ts",
-        templateFile: templatePath + "/s3-bucket/s3-bucket.hbs",
+        templateFile: s3BucketTemplatePath + "s3-bucket.hbs",
       },
       "Successfully created an S3 bucket!",
     ],

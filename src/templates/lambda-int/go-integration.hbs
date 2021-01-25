@@ -3,13 +3,13 @@ import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import { {{properCase lambda}}GoLambda } from '../lambda/{{dashCase lambda}}-go-lambda';
 
 export class {{properCase lambda}}GoLambdaIntegration extends Construct {
-public integration: LambdaProxyIntegration
-constructor(scope: Construct, id: string,) {
-super(scope, id);
-const lambda = new {{properCase lambda}}GoLambda(this, '{{properCase lambda}}GoFunction')
+    public integration: LambdaProxyIntegration;
+    constructor(scope: Construct, id: string) {
+        super(scope, id);
+        const lambda = new {{properCase lambda}}GoLambda(this, '{{properCase lambda}}GoFunc');
 
-this.integration = new LambdaProxyIntegration({
-handler: lambda.function
-});
-}
+        this.integration = new LambdaProxyIntegration({
+            handler: lambda.function,
+        });
+    }
 }

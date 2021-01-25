@@ -6,77 +6,80 @@ import { Runtime } from '@aws-cdk/aws-lambda';
 import { LambdaProxyIntegration} from '@aws-cdk/aws-apigatewayv2-integrations';
 
 export class {{properCase lambda}}DynamoLambda extends Construct {
-public getIntegration: LambdaProxyIntegration
-public putIntegration: LambdaProxyIntegration
-public postIntegration: LambdaProxyIntegration
-public delIntegration: LambdaProxyIntegration
-constructor(scope: Construct, id: string,) {
-super(scope, id);
+    public get: LambdaProxyIntegration;
+    public put: LambdaProxyIntegration;
+    public post: LambdaProxyIntegration;
+    public del: LambdaProxyIntegration;
+    constructor(scope: Construct, id: string) {
+        super(scope, id);
 
-const idValue = 'id';
-// const sortKeyValue = 'mySortField';
+        const idValue = 'id';
+        // const sortKeyValue = 'mySortField';
 
-const table = new Table(this, '{{properCase lambda}}Table',{
-// My key to partition on. This means what can be scaled in different instances
-partitionKey: { name: idValue, type: AttributeType.STRING },
-// A key I will ofter sort on. Add a sort key for faster sorting.
-// sortKey:{name: sortKeyValue, type :AttributeType.STRING},
-billingMode: BillingMode.PAY_PER_REQUEST
-name: "{{table}}"
-})
+        const table = new Table(
+            this,
+            '{{properCase lambda}}Table',
+            {
+                // My key to partition on. This means what can be scaled in different instances
+                partitionKey: { name: idValue, type: AttributeType.STRING },
+                // A key I will ofter sort on. Add a sort key for faster sorting.
+                // sortKey:{name: sortKeyValue, type :AttributeType.STRING},
+                billingMode: BillingMode.PAY_PER_REQUEST,
+                name: "{{table}}",
+            },
+        );
 
-const getFunction = new NodejsFunction(this, '{{properCase table}}GetFunction', {
-runtime: Runtime.NODEJS_12_X,
-entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'get.js'),
-handler: 'handler',
-environment: { TABLE_NAME: table.tableName, }
-})
+        const getFunction = new NodejsFunction(this, '{{properCase table}}GetFunction', {
+            runtime: Runtime.NODEJS_12_X,
+            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'get.js'),
+            handler: 'handler',
+            environment: { TABLE_NAME: table.tableName },
+        });
 
-const putFunction = new NodejsFunction(this, '{{properCase table}}PutFunction', {
-runtime: Runtime.NODEJS_12_X,
-entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'put.js'),
-handler: 'handler',
-environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
-})
+        const putFunction = new NodejsFunction(this, '{{properCase table}}PutFunction', {
+            runtime: Runtime.NODEJS_12_X,
+            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'put.js'),
+            handler: 'handler',
+            environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
+        });
 
-const postFunction = new NodejsFunction(this, '{{properCase table}}PostFunction', {
-runtime: Runtime.NODEJS_12_X,
-entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'post.js'),
-handler: 'handler',
-bundling: {
-externalModules: [ 'aws-sdk' ],
-nodeModules: [ 'uuid'],
-},
-environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
-})
+        const postFunction = new NodejsFunction(this, '{{properCase table}}PostFunction', {
+            runtime: Runtime.NODEJS_12_X,
+            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'post.js'),
+            handler: 'handler',
+            bundling: {
+                externalModules: [ 'aws-sdk' ],
+                nodeModules: [ 'uuid'],
+            },
+            environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
+        });
 
-const deleteFunction = new NodejsFunction(this, '{{properCase table}}DeleteFunction', {
-runtime: Runtime.NODEJS_12_X,
-entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'del.js'),
-handler: 'handler',
-environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
-})
+        const deleteFunction = new NodejsFunction(this, '{{properCase table}}DeleteFunction', {
+            runtime: Runtime.NODEJS_12_X,
+            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'del.js'),
+            handler: 'handler',
+            environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
+        })
 
-table.grantReadWriteData(getFunction);
-table.grantReadWriteData(postFunction);
-table.grantReadWriteData(putFunction);
-table.grantReadWriteData(deleteFunction);
+        table.grantReadWriteData(getFunction);
+        table.grantReadWriteData(postFunction);
+        table.grantReadWriteData(putFunction);
+        table.grantReadWriteData(deleteFunction);
 
-this.getIntegration = new LambdaProxyIntegration({
-handler: getFunction
-});
+        this.get = new LambdaProxyIntegration({
+            handler: getFunction,
+        });
 
-this.putIntegration = new LambdaProxyIntegration({
-handler: putFunction
-});
+        this.put = new LambdaProxyIntegration({
+            handler: putFunction,
+        });
 
-this.postIntegration = new LambdaProxyIntegration({
-handler: postFunction
-});
+        this.post = new LambdaProxyIntegration({
+            handler: postFunction,
+        });
 
-this.delIntegration = new LambdaProxyIntegration({
-handler: deleteFunction
-});
-
-}
+        this.del = new LambdaProxyIntegration({
+            handler: deleteFunction,
+        });
+    }
 }

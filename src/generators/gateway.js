@@ -1,4 +1,5 @@
-import { gatewayCDKPath, templatePath } from "../constants";
+import { gatewayCDKPath, gatewayTemplatePath } from "../constants/path";
+import { validateLettersAndSpaces } from "../utils/validation";
 
 const apiGatewayGenerator = (plop) => {
   plop.setGenerator("Generate an Api Gateway", {
@@ -9,6 +10,7 @@ const apiGatewayGenerator = (plop) => {
         type: "input",
         name: "gateway",
         message: "What is the name of your API gateway?",
+        validate: validateLettersAndSpaces,
       },
     ],
     actions: [
@@ -16,7 +18,7 @@ const apiGatewayGenerator = (plop) => {
       {
         type: "add",
         path: gatewayCDKPath + "{{dashCase gateway}}-gateway.ts",
-        templateFile: templatePath + "gateway/gateway.hbs",
+        templateFile: gatewayTemplatePath + "gateway.hbs",
       },
       "Successfully created an API gateway!",
     ],

@@ -1,7 +1,6 @@
-lambdaGateway.addRoutes({
-path: '/{{lowerCase route}}',
-methods: [
-HttpMethod.GET
-],
-integration: {{camelCase lambda}}Integration.integration
-});
+
+        lambdaGateway.addRoutes({
+            path: '/{{lowerCase route}}',
+            methods: [ HttpMethod.GET ],
+            integration: {{camelCase lambda}}Integration.integration,
+        });
