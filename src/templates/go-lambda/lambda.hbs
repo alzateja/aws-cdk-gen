@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { Construct, Duration } from '@aws-cdk/core';
+import { Construct } from '@aws-cdk/core';
 import { Asset } from '@aws-cdk/aws-s3-assets';
 import { Runtime, Function, S3Code } from '@aws-cdk/aws-lambda';
 
@@ -16,13 +16,20 @@ export class {{properCase lambda}}GoLambda extends Construct {
             this,
             "{{properCase lambda}}GoLambdaFnZip",
             {
-                path: path.join(__dirname, '..', '..', 'lambda', 'go', '{{camelCase lambda}}', 'function.zip'),
+                path: path.join(
+                    __dirname,
+                    '..',
+                    '..',
+                    'lambda',
+                    'go',
+                    '{{camelCase lambda}}',
+                    'function.zip',
+                ),
             },
         );
 
         this.function = new Function(this, '{{properCase lambda}}GoFunction', {
             code: new S3Code(goCodeAsset.bucket,goCodeAsset.s3ObjectKey),
-            timeout: Duration.seconds(300),
             runtime: Runtime.GO_1_X,
             handler: "main",
             environment: props?.environment || {},

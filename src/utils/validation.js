@@ -5,7 +5,7 @@ import {
 } from "../constants/message";
 
 const lettersAndSpacesRegex = /^[a-zA-Z\s]+$/;
-const isUrlPathRegex = /^[a-z\/]+$/;
+const isUrlPathRegex = /^\{1}+[a-z\/]*$/;
 
 const checkRegexForMatch = (
   regex,

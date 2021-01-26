@@ -31,21 +31,45 @@ export class {{properCase lambda}}DynamoLambda extends Construct {
 
         const getFunction = new NodejsFunction(this, '{{properCase table}}GetFunction', {
             runtime: Runtime.NODEJS_12_X,
-            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'get.js'),
+            entry: path.join(
+                __dirname,
+                '..',
+                '..',
+                'lambda',
+                'dynamodb',
+                '{{camelCase lambda}}',
+                'get.js',
+            ),
             handler: 'handler',
             environment: { TABLE_NAME: table.tableName },
         });
 
         const putFunction = new NodejsFunction(this, '{{properCase table}}PutFunction', {
             runtime: Runtime.NODEJS_12_X,
-            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'put.js'),
+            entry: path.join(
+                __dirname,
+                '..',
+                '..',
+                'lambda',
+                'dynamodb',
+                '{{camelCase lambda}}',
+                'put.js',
+            ),
             handler: 'handler',
             environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
         });
 
         const postFunction = new NodejsFunction(this, '{{properCase table}}PostFunction', {
             runtime: Runtime.NODEJS_12_X,
-            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'post.js'),
+            entry: path.join(
+                __dirname,
+                '..',
+                '..',
+                'lambda',
+                'dynamodb',
+                '{{camelCase lambda}}',
+                'post.js',
+            ),
             handler: 'handler',
             bundling: {
                 externalModules: [ 'aws-sdk' ],
@@ -56,7 +80,15 @@ export class {{properCase lambda}}DynamoLambda extends Construct {
 
         const deleteFunction = new NodejsFunction(this, '{{properCase table}}DeleteFunction', {
             runtime: Runtime.NODEJS_12_X,
-            entry: path.join(__dirname, '..', '..', 'lambda', 'dynamodb', '{{camelCase lambda}}', 'del.js'),
+            entry: path.join(
+                __dirname,
+                '..',
+                '..',
+                'lambda',
+                'dynamodb',
+                '{{camelCase lambda}}',
+                'del.js',
+            ),
             handler: 'handler',
             environment: { TABLE_NAME: table.tableName, PRIMARY_KEY: idValue },
         })

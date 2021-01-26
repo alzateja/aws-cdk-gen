@@ -1,6 +1,6 @@
 {
   "name": "aws-cdk-gen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Opinionated tool to generate Typescript AWS CDK constructs.",
   "homepage": "https://github.com/alzateja/aws-cdk-gen",
   "repository": {
