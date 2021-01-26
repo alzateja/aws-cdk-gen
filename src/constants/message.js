@@ -13,10 +13,10 @@ export const defaultInputErrorMessage =
 
 export const lettersAndSpacesInputErrorMessage = `
 This input only takes spaces and letters, like:
-"My construct" or "myconstruct"
+  "My construct" or "myconstruct"
 `;
 
 export const urlPathInputErrorMessage = `
-This input only takes lowercase letters and "/", like:
-"myroute" or "/my/route" or "myroute/"
+This input only takes lowercase letters and "/". It must also start with a "/", like:
+  "/myroute" or "/my/route" or "/"
 `;

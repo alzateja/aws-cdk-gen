@@ -7,19 +7,16 @@ export class {{properCase gateway}}APIGateway extends Construct {
     constructor(scope: Construct, id: string) {
         super(scope, id);
 
-// -- Define Integrations --
+    // -- Define Integrations --
 
-
-// -- Define Gateway --
-
+    // -- Define Gateway --
         const lambdaGateway = new HttpApi(
             this,
             '{{properCase gateway}}HttpAPI',
             { apiName: '{{dashCase gateway}}-api' },
         );
 
-// -- Define Routes --
-
+    // -- Define Routes --
 
     }
 }

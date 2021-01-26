@@ -14,7 +14,15 @@ export class {{properCase lambda}}JsLambda extends Construct {
 
         this.function = new NodejsFunction(this, '{{properCase lambda}}JsFunction', {
             runtime: Runtime.NODEJS_12_X,
-            entry: path.join(__dirname, '..', '..', 'lambda', 'js', '{{camelCase lambda}}', 'handler.js'),
+            entry: path.join(
+                __dirname,
+                '..',
+                '..',
+                'lambda',
+                'js',
+                '{{camelCase lambda}}',
+                'handler.js',
+            ),
             handler: 'handler',
         });
     }
